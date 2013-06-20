@@ -8,10 +8,17 @@
       body, p { margin: 0; }
       html, body, #container { height: 100%; }
       #container {
+        /* Old WebKit */
+        -webkit-box-align: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-pack: center;
+        display: -webkit-box;
+        /* New WebKit */
         -webkit-align-items: center;
         display: -webkit-flex;
         -webkit-flex-direction: column;
         -webkit-justify-content: center;
+        /* Standard */
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -36,19 +43,9 @@
           resWidth = window.screen.width,
           vueHeight = window.innerHeight,
           vueWidth = window.innerWidth;
-      if (resHeight > resWidth) {
-        res = resHeight + '×' + resWidth;
-      } else {
-        res = resWidth + '×' + resHeight;
-      }
-      if (vueHeight > vueWidth) {
-        vue = vueHeight + '×' + vueWidth;
-      } else {
-        vue = vueWidth + '×' + vueHeight;
-      }
       dppxEl.innerHTML = dppx;
-      resEl.innerHTML = res;
-      vueEl.innerHTML = vue;
+      resEl.innerHTML = resWidth + '×' + resHeight;
+      vueEl.innerHTML = vueWidth + '×' + vueHeight;
     }
     var dppx = window.devicePixelRatio,
         dppxEl = document.getElementById('dppx'),
