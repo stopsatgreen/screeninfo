@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <style>
+      body, p { margin: 0; }
+      html, body, #container { height: 100%; }
+      #container {
+        -webkit-align-items: center;
+        display: -webkit-flex;
+        -webkit-flex-direction: column;
+        -webkit-justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      p {
+        font: bold 5vw/1 sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <p>Resolution: <span id="res">0×0</span></p>
+      <p>Viewport: <span id="vue">0×0</span></p>
+      <p>Device Pixel Ratio: <span id="dppx">0</span></p>
+    </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function(){
+    function measure() {
+      var resHeight = window.screen.height,
+          resWidth = window.screen.width,
+          vueHeight = window.innerHeight,
+          vueWidth = window.innerWidth;
+      if (resHeight > resWidth) {
+        res = resHeight + '×' + resWidth;
+      } else {
+        res = resWidth + '×' + resHeight;
+      }
+      if (vueHeight > vueWidth) {
+        vue = vueHeight + '×' + vueWidth;
+      } else {
+        vue = vueWidth + '×' + vueHeight;
+      }
+      dppxEl.innerHTML = dppx;
+      resEl.innerHTML = res;
+      vueEl.innerHTML = vue;
+    }
+    var dppx = window.devicePixelRatio,
+        dppxEl = document.getElementById('dppx'),
+        resEl = document.getElementById('res'),
+        vueEl = document.getElementById('vue'),
+        res;
+    measure();
+    window.addEventListener('resize', measure);
+  });
+  </script>
+  </body>
+</html>
